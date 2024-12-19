@@ -1,37 +1,59 @@
+import random
 class Warrior:
     health = int()
     name = str
+    endurance = int
+    armor = int
 
-    def __init__(self,name: str,  health:int):
+
+    def __init__(self,name: str,  health:int, endurance:int, armor: int):
         self.health = health
         self.name = name
+        self.armor = armor
+        self.endurance = endurance
 
-    def set(self, health:int):
+    def set_health(self, health:int):
         self.health = health
 
-    def get(self):
+    def get_health(self):
         return self.health
 
+    def set_armor(self, armor:int):
+        self.armor = armor
+
+    def get_armor(self):
+        return self.armor
+
+    def set_endurance(self, endurance:int):
+        self.endurance = endurance
+
+    def get_endurance(self):
+        return self.endurance
+
+    def defend(self):
+        self.set_health(self.get_health() - random.randint(0, 10))
+        self.set_armor(self.get_armor() - random.randint(0, 20))
+        return self.health, self.armor
+
+
+    def attack(self):
+        self.endurance -= 10
+        return self.endurance
+
+
 if __name__ == '__main__':
-    warrior1 = Warrior("A",  100)
-    warrior2 = Warrior("B",100)
+    warrior1 = Warrior("A",  100, 100,100)
+    warrior2 = Warrior("B",100,100,100)
 
-    def hurt(warr1: Warrior, warr2: Warrior):
-        if (warr1.get()>20):
-            warr1.set(warr1.get() - 20)
-            print("warrior: ", warr1.name, " was hurt, health: " ,warr1.get()," , warrior: ", warr2.name, " hit, health ", warr2.get() )
-        else: print("warrior: " , warr2.name, " win")
+    random_func = [warrior2.attack(), warrior2.defend(), warrior1.attack(), warrior1.defend()]
+    while (warrior2.get_health()>0) and (warrior1.get_health()>0):
+        
+        print(random.choice(random_func))
 
-    hurt(warrior2,warrior1)
-    hurt(warrior1, warrior2)
-    hurt(warrior2,warrior1)
-    hurt(warrior1, warrior2)
-    hurt(warrior2,warrior1)
-    hurt(warrior1, warrior2)
-    hurt(warrior1, warrior2)
-    hurt(warrior1, warrior2)
-    hurt(warrior1, warrior2)
-    hurt(warrior1, warrior2)
+
+
+
+
 
 
 
