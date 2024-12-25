@@ -29,16 +29,13 @@ class Model:
         self.author = author
 
 
-    def save(self):
-        title = self.title
-        text = self.text
-        author = self.author
-        dictionary = {"title": title, "text ":  text, "author": author}
-        with open('1.json', 'a') as f:
-                json.dump(dictionary, f)
+def save(title:str, text:str, author:str):
+    dictionary = {"title": title, "text ":  text, "author": author}
+    with open('1.json', 'a') as f:
+        json.dump(dictionary, f)
 
 s = Model("ggg", "fff", "eee")
-s.save()
+save(s.get_title(), s.get_text(),s.author)
 
 print(s.get_author(),s.get_title(),s.get_text())
 
